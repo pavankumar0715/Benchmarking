@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.5)
+project(VectorBenchmark)
+set(CMAKE_CXX_STANDARD 17)
+add_compile_options(-O3) 
+add_subdirectory(benchmark abseil-cpp)
+find_package(absl REQUIRED)
+add_executable(VectorBenchmark BM_unordered_newdata.cpp)
+target_link_libraries(VectorBenchmark benchmark absl::hash absl::flat_hash_map absl::strings)
