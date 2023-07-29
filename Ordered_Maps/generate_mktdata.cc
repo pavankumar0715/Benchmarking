@@ -1,0 +1,63 @@
+#include <iostream>
+#include <fstream>
+#include <ctime>
+#include <cstdlib>
+#include <iomanip>
+#include <math.h>
+
+using namespace std;
+
+int generateRandomQuantity()
+{
+    return rand() % 3 + 1;
+}
+
+double generateRandomPrice()
+{
+    double price = (rand() % 5 + 1000) * 0.5;
+    return floor(price * 2) / 2;
+}
+
+void generateMarketSnapshotCSV(const string &filename, int numberInitialOrders)
+{
+    ofstream outputFile(filename);
+    if (!outputFile)
+    {
+        cout << "Error opening file " << filename << endl;
+        return;
+    }
+    for (int i = 0; i < numberInitialOrders; ++i)
+    {
+        double price = generateRandomPrice();
+        int quantity = generateRandomQuantity();
+        outputFile << fixed << setprecision(2) << price << "," << quantity << endl;
+    }
+    outputFile.close();
+    cout << "Market snapshot CSV file generated successfully." << endl;
+}
+void generateMarketUpdatesCSV(const string &filename, int numUpdates)
+{
+    ofstream outputFile(filename);
+    if (!outputFile)
+    {
+        cout << "Error opening file " << filename << endl;
+        return;
+    }
+    for (int i = 0; i < numUpdates; ++i)
+    {
+        double price = generateRandomPrice();
+        int quantity = generateRandomQuantity();
+        outputFile << fixed << setprecision(2) << price << "," << quantity << endl;
+    }
+    outputFile.close();
+
+    cout << "Market updates CSV file generated successfully." << endl;
+}
+
+int main()
+{
+    srand(static_cast<unsigned int>(time(0)));
+    generateMarketSnapshotCSV("snapshot.csv", 20);
+    generateMarketUpdatesCSV("updates.csv", 10000);
+    return 0;
+}
