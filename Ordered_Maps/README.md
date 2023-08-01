@@ -23,4 +23,5 @@ The results of the benchmark are:
 
 
 
-command to build: g++ -o benchmark_executable BM_ordered.cpp -O3 -lbenchmark -lpthread
+command to build: 
+```g++ -o benchmark_executable BM_ordered.cpp -O3 -lbenchmark -lpthread```
